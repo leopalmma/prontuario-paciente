@@ -1,5 +1,7 @@
 // ADICIONA VALORES DE SINAIS VITAIS AO PACIENTE
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.ArrayList;
 // Classe SinaisVitais que representa os sinais vitais de um paciente
 public class SinaisVitais {
     private int pressaoSistolica;
@@ -27,8 +29,37 @@ public class SinaisVitais {
         this.peso = peso;
         this.alturaCm = alturaCm;
         this.dataHoraRegistro = dataHoraRegistro;
-    //getters
     }
+
+    public List<String> verificarAlertas(){
+        List<String> alertas = new ArrayList<>();
+        if (pressaoSistolica <=90 || pressaoSistolica >=160){
+            alertas.add("Alerta: Pressão Sistolica fora do intervalo normal.");
+        }
+        if (pressaoDiastolica <=60 || pressaoDiastolica >=110){
+            alertas.add("Alerta: Pressão Diastólica fora do intervalo normal.");
+        }
+        if (frequenciaCardiaca <=40 || frequenciaCardiaca >=120){
+            alertas.add("Alerta: Frequência Cardíaca fora do intervalo normal.");
+        }
+        if (frequenciaRespiratoria <=8 || frequenciaRespiratoria >=28){
+            alertas.add("Alerta: Frequência Respiratória fora do intervalo normal.");
+        }
+        if (temperaturaCorporal <=36.2 || temperaturaCorporal >=38.3){
+            alertas.add("Alerta: Temperatura Corporal fora do intervalo normal.");
+        }
+        if (saturacaoOxigenio <=94){
+            alertas.add("Alerta: Saturação de Oxigênio fora do intervalo normal.");
+        }
+        if (glicemiaCapilar <=70 || glicemiaCapilar >=180){
+            alertas.add("Alerta: Glicemia Capilar fora do intervalo normal.");
+        }
+        if(calcularPAM() <=65 || calcularPAM() >=110){
+            alertas.add("Alerta: Pressão Arterial Média fora do intervalo normal.");
+        }
+        return alertas;
+    }
+    //getters
     public int getPressaoSistolica() {
         return pressaoSistolica;
     }

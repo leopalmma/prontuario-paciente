@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -14,7 +15,7 @@ public class App {
         imprimirSinais(sinaisVitais1);
 
         Paciente paciente2 = new Paciente("Leandro", 567, LocalDate.of(1985, 10, 20));
-        SinaisVitais registro1 = new SinaisVitais(110, 80, 75, 18, 37.0, 97, 90, 80.0, 180.0,
+        SinaisVitais registro1 = new SinaisVitais(200, 80, 75, 18, 37.0, 97, 90, 80.0, 180.0,
                 LocalDateTime.of(2026, 10, 6, 8, 0));
         SinaisVitais registro2 = new SinaisVitais(115, 85, 80, 20, 37.5, 98, 95, 85.0, 185.0,
                 LocalDateTime.of(2026, 10, 6, 14, 0));
@@ -39,6 +40,14 @@ public class App {
         System.out.println("Peso: " + registro.getPeso() + " kg");
         System.out.println("Altura: " + registro.getAlturaCm() + " cm");
         System.out.println("Data e Hora do Registro: " + registro.getDataHoraRegistro());
+        List<String> alertas = registro.verificarAlertas();
+        if (alertas.isEmpty()) {
+            System.out.println("SEM ALTERAÇÕES NOS SINAIS VITAIS");
+        } else {
+            for (String alerta : alertas) {
+                System.out.println(alerta);
+            }
+        }
         System.out.println("-----");
     }
 }
